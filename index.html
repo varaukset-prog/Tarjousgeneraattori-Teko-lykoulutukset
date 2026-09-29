@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarjousgeneraattori - Aileadit</title>
     <style>
+        /* Aileadit-brändivärit käyttöliittymään ja tarjoukseen */
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
             margin: 0; 
@@ -54,6 +55,7 @@
         }
         button:hover { opacity: 0.9; }
         
+        /* TUMMA TARJOUSPOHJA (Esikatselu & Tulostus) */
         .output-box { 
             display: none; 
             margin-top: 40px; 
@@ -84,13 +86,46 @@
         .total-price-text { color: #D9764A; font-size: 22px; font-weight: 800; }
         
         .print-btn { background-color: #123B3A; color: #F5F2EA; margin-top: 25px; }
+        .print-btn:hover { background-color: #101716; }
         
+        /* TÄRKEÄT TULOSTUSASETUKSET PDF-MUOTOA VARTEN */
         @media print {
-            body { background-color: #080B0C !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .container { background: transparent; border: none; box-shadow: none; padding: 0; max-width: 100%; }
+            /* Piilotetaan selaimen automaattiset ylä- ja alatunnistetekstit (URL, päivämäärät, sivunumerot) */
+            @page { 
+                margin: 20mm; /* Lisää 20mm puhtaat marginaalit A4-arkin reunoille */
+            }
+            
+            body { 
+                background-color: #080B0C !important; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
+                padding: 0;
+                margin: 0;
+            }
+            
+            .container { 
+                background: transparent; 
+                border: none; 
+                box-shadow: none; 
+                padding: 0; 
+                max-width: 100%; 
+            }
+            
             body * { visibility: hidden; }
             .output-box, .output-box * { visibility: visible; }
-            .output-box { position: absolute; left: 0; top: 0; width: 100%; border: none; padding: 0; background: #0D1110 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            
+            .output-box { 
+                position: absolute; 
+                left: 0; 
+                top: 0; 
+                width: 100%; 
+                border: none; 
+                padding: 20px; /* Sisäinen lisätty marginaali elementtien ympärille PDF:ssä */
+                background: #0D1110 !important; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
+                box-sizing: border-box;
+            }
             .no-print { display: none; }
         }
     </style>
@@ -107,7 +142,7 @@
 
             <h3>2. Asiakkaan tiedot</h3>
             <label for="clientCompany">Asiakkaan yrityksen nimi:</label>
-            <input type="text" id="clientCompany" required placeholder="Esim. Asiakas Oy">
+            <input type="text" id="clientCompany" required placeholder="Esim. Yritys Oy">
 
             <label for="clientName">Asiakkaan yhteyshenkilön nimi:</label>
             <input type="text" id="clientName" required placeholder="Esim. Matti Meikäläinen">
@@ -119,7 +154,6 @@
         </form>
     </div>
 
-    <!-- TÄMÄ ON TUMMA TARJOUSPOHJA JOKA TULOSTUU / TALLENTUU PDF:KSI -->
     <div id="quoteOutput" class="output-box">
         <div class="quote-header">
             <div>
@@ -183,10 +217,3 @@
         
         <div class="no-print">
             <button class="print-btn" onclick="window.print()">Tulosta / Tallenna PDF</button>
-        </div>
-    </div>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
