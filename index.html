@@ -15,129 +15,110 @@
         }
         .container { 
             max-width: 750px; 
+            background: #101716; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6); 
             margin: auto;
+            border: 1px solid #123B3A; 
         }
         h1, h3, h4 { color: #F5F2EA; margin-bottom: 10px; }
         h1 { font-size: 28px; border-bottom: 1px solid #C8A96A; padding-bottom: 10px; margin-bottom: 30px; } 
-        h3 { padding-bottom: 5px; margin-top: 30px; color: #C8A96A; font-size: 18px; text-transform: uppercase; letter-spacing: 0.5px; } 
+        h3 { border-bottom: 2px solid #123B3A; padding-bottom: 5px; margin-top: 30px; color: #C8A96A; } 
         
         label { display: block; margin-top: 15px; font-weight: bold; font-size: 14px; color: #8F948C; } 
         
         input { 
             width: 100%; 
-            padding: 12px 0; 
+            padding: 12px; 
             margin-top: 6px; 
-            border: none;
-            border-bottom: 1px solid #123B3A; 
+            border: 1px solid #123B3A; 
+            border-radius: 6px; 
             box-sizing: border-box; 
-            background-color: transparent; 
+            background-color: #0D1110; 
             color: #F5F2EA;
-            font-size: 16px;
+            font-size: 15px;
         }
-        input:focus { outline: none; border-bottom-color: #D9764A; } 
+        input:focus { outline: none; border-color: #C8A96A; }
         
-        .submit-btn { 
+        button { 
             background-color: #D9764A; 
             color: #080B0C; 
             padding: 14px 20px; 
             border: none; 
             border-radius: 6px; 
             cursor: pointer; 
-            margin-top: 40px; 
+            margin-top: 30px; 
             font-size: 16px; 
             width: 100%; 
             font-weight: bold; 
         }
-        .submit-btn:hover { opacity: 0.9; }
+        button:hover { opacity: 0.9; }
         
-        /* TARJOUSPOHJA - Avoin tyyli ilman bokseja */
+        /* TUMMA TARJOUSPOHJA (Esikatselu & Tulostus) */
         .output-box { 
             display: none; 
-            margin-top: 60px; 
-            padding-top: 40px;
-            border-top: 1px solid #123B3A;
-            background: transparent; 
+            margin-top: 40px; 
+            padding: 40px; 
+            border: 1px solid #123B3A; 
+            background: #0D1110; 
             color: #F5F2EA; 
+            border-radius: 8px;
         }
-        .quote-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; }
+        .quote-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
         .logo-preview { max-width: 180px; max-height: 90px; object-fit: contain; }
         .company-info { text-align: right; font-size: 14px; color: #F5F2EA; line-height: 1.6; }
-        .client-info { margin-bottom: 40px; font-size: 16px; line-height: 1.5; }
+        .client-info { margin-bottom: 35px; font-size: 16px; line-height: 1.5; }
         
         .content-box { 
-            padding: 0 0 0 15px; 
-            border-left: 3px solid #D9764A; 
-            margin-bottom: 40px; 
+            background-color: #101716; 
+            padding: 20px; 
+            border-left: 4px solid #D9764A; 
+            margin-bottom: 35px; 
+            border-radius: 0 6px 6px 0;
         }
         
-        .price-table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 25px; }
-        .price-table th, .price-table td { padding: 14px 0; text-align: left; border-bottom: 1px solid #123B3A; color: #F5F2EA; }
-        .price-table th { font-weight: bold; color: #C8A96A; border-bottom: 2px solid #123B3A; } 
+        .price-table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 20px; }
+        .price-table th, .price-table td { padding: 14px; text-align: left; border-bottom: 1px solid #123B3A; color: #F5F2EA; }
+        .price-table th { background-color: #101716; font-weight: bold; color: #C8A96A; } 
         
-        .total-row td { font-size: 19px; font-weight: bold; border-bottom: none; padding-top: 20px; }
-        .total-price-text { color: #D9764A; font-size: 24px; font-weight: 800; }
+        .total-row { font-size: 19px; font-weight: bold; background-color: #101716; }
+        .total-price-text { color: #D9764A; font-size: 22px; font-weight: 800; }
         
-        .print-btn { 
-            background-color: transparent; 
-            color: #C8A96A; 
-            border: 1px solid #C8A96A;
-            padding: 12px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 30px;
-        }
-        .print-btn:hover { background-color: rgba(200, 169, 106, 0.1); }
+        .print-btn { background-color: #123B3A; color: #F5F2EA; margin-top: 25px; }
+        .print-btn:hover { background-color: #101716; }
         
-        /* PAKOTETTU TULOSTUS: LAAJENNUS REUNOJEN YLI JA TARKKA KESKITYS */
+        /* TULOSTUSASETUKSET PDF-MUOTOA VARTEN REUNATTOMANA */
         @media print {
             @page { 
                 margin: 0 !important; 
             }
-            html, body {
-                background-color: #080B0C !important;
-                color: #F5F2EA !important;
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                width: 100% !important;
-                height: 100% !important;
+            body { 
+                background-color: #080B0C !important; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
+                padding: 0;
+                margin: 20px !important; 
             }
-            
-            body::before {
-                content: "";
-                position: fixed;
-                top: -10mm;
-                left: -10mm;
-                right: -10mm;
-                bottom: -10mm;
-                background-color: #080B0C !important;
-                z-index: -9999;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            
             .container { 
-                max-width: 750px !important; 
-                width: 90% !important;
-                margin: 0 auto !important; 
-                padding: 0 !important;
-                background-color: transparent !important;
+                background: transparent; 
+                border: none; 
+                box-shadow: none; 
+                padding: 0; 
+                max-width: 100%; 
             }
-            
             body * { visibility: hidden; }
             .output-box, .output-box * { visibility: visible; }
-            
             .output-box { 
-                display: block !important;
-                position: relative !important; 
-                margin: 0 auto !important;
-                padding: 60px 20px !important; 
-                border-top: none !important;
-                background-color: transparent !important; 
-                width: 100% !important;
+                position: absolute; 
+                left: 0; 
+                top: 0; 
+                width: 100%; 
+                border: none; 
+                padding: 20px; 
+                background: #0D1110 !important; 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact; 
                 box-sizing: border-box;
             }
             .no-print { display: none; }
@@ -152,56 +133,55 @@
         <form id="quoteForm">
             <h3>1. Lataa logo</h3>
             <label for="logoInput">Yrityksen logo:</label>
-            <input type="file" id="logoInput" accept="image/*" style="border: none; padding: 10px 0;">
+            <input type="file" id="logoInput" accept="image/*" style="background-color: transparent; border: none; padding: 0;">
 
             <h3>2. Asiakkaan tiedot</h3>
             <label for="clientCompany">Asiakkaan yrityksen nimi:</label>
-            <input type="text" id="clientCompany" required placeholder="Kirjoita tähän...">
+            <input type="text" id="clientCompany" required placeholder="Esim. Yritys Oy">
 
             <label for="clientName">Asiakkaan yhteyshenkilön nimi:</label>
-            <input type="text" id="clientName" required placeholder="Kirjoita tähän...">
+            <input type="text" id="clientName" required placeholder="Esim. Matti Meikäläinen">
 
             <label for="participants">Osallistujamäärä:</label>
             <input type="number" id="participants" required min="1" placeholder="Esim. 10">
 
-            <!-- KORJATTU: Lisätty takaisin onclick="generateQuote()" toiminnallisuus -->
-            <button type="button" class="submit-btn" onclick="generateQuote()">Luo tarjous</button>
+            <button type="button" onclick="generateQuote()">Luo tarjous</button>
         </form>
     </div>
 
-    <!-- TÄMÄ PUHDAS TARJOUSPOHJA TULOSTUU KESKITETTYNÄ -->
+    <!-- TÄMÄ ON TUMMA TARJOUSPOHJA JOKA TULOSTUU / TALLENTUU PDF:KSI -->
     <div id="quoteOutput" class="output-box">
         <div class="quote-header">
             <div>
                 <img id="outLogo" class="logo-preview" src="" alt="Aileadit Logo" style="display:none;">
             </div>
             <div class="company-info">
-                <p style="margin: 0; font-size: 11px; color: #8F948C; font-weight: bold; letter-spacing: 1px;">TARJOUKSEN ANTAJA</p>
+                <p style="margin: 0; font-size: 12px; color: #8F948C; font-weight: bold; letter-spacing: 1px;">TARJOUKSEN ANTAJA</p>
                 <p style="font-size: 20px; font-weight: bold; color: #D9764A; margin: 4px 0 0 0;">Aileadit</p> 
                 <p style="margin: 2px 0; font-weight: 500;">Pyry Kauppinen</p>
-                <p style="color: #C8A96A; margin: 2px 0; font-size: 14px;">Asiantuntija, tekoälykoulutukset</p> 
+                <p style="color: #C8A96A; margin: 2px 0; font-size: 14px; font-style: italic;">Asiantuntija, tekoälykoulutukset</p> 
                 <p style="margin: 2px 0;">varaukset@aileadit.com</p>
                 <p style="margin: 4px 0 0 0; color: #8F948C; font-size: 13px;">www.aileadit.fi</p>
             </div>
         </div>
 
         <h2 style="font-size: 26px; color: #D9764A; letter-spacing: 0.5px; margin-bottom: 5px; font-weight: 800;">TARJOUS: TEKOÄLYKOULUTUKSET</h2>
-        <p style="font-size: 14px; color: #8F948C; margin-bottom: 35px;">Päivämäärä: <span id="outDate" style="color: #F5F2EA; font-weight: bold;"></span></p>
+        <p style="font-size: 14px; color: #8F948C; margin-bottom: 25px;">Päivämäärä: <span id="outDate" style="color: #F5F2EA; font-weight: bold;"></span></p>
         
-        <hr style="border: 0; border-top: 1px solid #123B3A; margin-bottom: 40px;"> 
+        <hr style="border: 0; border-top: 2px solid #D9764A; margin-bottom: 35px;"> 
 
         <div class="client-info">
-            <p style="margin: 0 0 4px 0; color: #8F948C; font-size: 11px; font-weight: bold; letter-spacing: 1px;">ASIAKAS</p>
+            <p style="margin: 0 0 4px 0; color: #8F948C; font-size: 12px; font-weight: bold; letter-spacing: 0.5px;">ASIAKAS</p>
             <p style="margin: 2px 0; font-size: 20px; font-weight: bold; color: #F5F2EA;"><span id="outClientCompany"></span></p>
             <p style="margin: 2px 0; color: #8F948C;">Vastaanottaja: <span id="outClientName" style="color: #F5F2EA; font-weight: 500;"></span></p>
         </div>
 
         <div class="content-box">
-            <h4 style="margin-top: 0; margin-bottom: 8px; color: #D9764A; font-size: 13px; letter-spacing: 0.5px; font-weight: bold;">KOULUTUKSEN SISÄLTÖ</h4>
+            <h4 style="margin-top: 0; margin-bottom: 8px; color: #D9764A; font-size: 14px; letter-spacing: 0.5px; font-weight: bold;">KOULUTUKSEN SISÄLTÖ</h4>
             <p style="margin: 0; line-height: 1.6; font-size: 15px; color: #F5F2EA;">Koulutus opettaa sinua ymmärtämään tekoälyä ja miten voit siitä saada liiketoiminnallista hyötyä omaan yritykseesi.</p>
         </div>
 
-        <h4 style="margin-bottom: 5px; color: #C8A96A; font-size: 13px; letter-spacing: 0.5px; font-weight: bold;">HINNOITTELU</h4>
+        <h4 style="margin-bottom: 10px; color: #C8A96A; font-size: 14px; letter-spacing: 0.5px; font-weight: bold;">HINNOITTELU</h4>
         <table class="price-table">
             <thead>
                 <tr>
@@ -219,4 +199,24 @@
                     <td style="font-weight: bold; color: #F5F2EA;"><span id="outPriceNet"></span> €</td>
                 </tr>
                 <tr>
-                    <td colspan="3" style="text-align: right; color: #8F948C; font-size: 14px; border-bottom: none; padding-top: 15px;">Arvonlisävero (ALV 25,5%):</td>
+                    <td colspan="3" style="text-align: right; color: #8F948C; font-size: 14px; border-bottom: none;">Arvonlisävero (ALV 25,5%):</td>
+                    <td style="font-weight: 500; border-bottom: none;"><span id="outTaxAmount"></span> €</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right; border-top: 2px solid #123B3A;">Hinta yhteensä (Sis. ALV):</td>
+                    <td class="total-price-text" style="border-top: 2px solid #123B3A;"><span id="outPriceTotal"></span> €</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p style="font-size: 13px; color: #8F948C; margin-top: 50px; font-style: italic;">Tarjous on voimassa 30 päivää päiväyksestä. www.aileadit.fi</p>
+        
+        <div class="no-print">
+            <button class="print-btn" onclick="window.print()">Tulosta / Tallenna PDF</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
