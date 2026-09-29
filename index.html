@@ -91,17 +91,15 @@
         /* TULOSTUSASETUKSET PDF-MUOTOA VARTEN MARGINAALEILLA */
         @media print {
             @page { 
-                margin: 20px !important; /* 20px marginaali sivun reunoille selaimessa */
+                margin: 20px !important; 
             }
-            
             body { 
                 background-color: #080B0C !important; 
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact; 
                 padding: 0;
-                margin: 20px !important; /* Pakotetaan 20px marginaali jokaisesta reunasta */
+                margin: 20px !important; 
             }
-            
             .container { 
                 background: transparent; 
                 border: none; 
@@ -109,10 +107,8 @@
                 padding: 0; 
                 max-width: 100%; 
             }
-            
             body * { visibility: hidden; }
             .output-box, .output-box * { visibility: visible; }
-            
             .output-box { 
                 position: absolute; 
                 left: 0; 
