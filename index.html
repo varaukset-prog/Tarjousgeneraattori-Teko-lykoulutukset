@@ -41,7 +41,7 @@
         }
         input:focus { outline: none; border-color: #C8A96A; }
         
-        button { 
+        button.action-btn { 
             background-color: #D9764A; 
             color: #080B0C; 
             padding: 14px 20px; 
@@ -53,7 +53,7 @@
             width: 100%; 
             font-weight: bold; 
         }
-        button:hover { opacity: 0.9; }
+        button.action-btn:hover { opacity: 0.9; }
         
         /* TUMMA TARJOUSPOHJA (Esikatselu & Tulostus) */
         .output-box { 
@@ -85,7 +85,7 @@
         .total-row { font-size: 19px; font-weight: bold; background-color: #101716; }
         .total-price-text { color: #D9764A; font-size: 22px; font-weight: 800; }
         
-        .print-btn { background-color: #123B3A; color: #F5F2EA; margin-top: 25px; }
+        .print-btn { background-color: #123B3A; color: #F5F2EA; margin-top: 25px; width: auto; display: inline-block; }
         .print-btn:hover { background-color: #101716; }
         
         /* TULOSTUSASETUKSET PDF-MUOTOA VARTEN REUNATTOMANA */
@@ -130,7 +130,7 @@
 <div class="container">
     <div class="no-print">
         <h1>Aileadit - Tarjousgeneraattori</h1>
-        <form id="quoteForm">
+        <form id="quoteForm" onsubmit="return false;">
             <h3>1. Lataa logo</h3>
             <label for="logoInput">Yrityksen logo:</label>
             <input type="file" id="logoInput" accept="image/*" style="background-color: transparent; border: none; padding: 0;">
@@ -145,8 +145,7 @@
             <label for="participants">Osallistujamäärä:</label>
             <input type="number" id="participants" required min="1" placeholder="Esim. 10">
 
-            <!-- KORJATTU TÄHÄN ONCLICK-KÄSKY AKTIVOINTIA VARTEN -->
-            <button type="button" onclick="generateQuote()">Luo tarjous</button>
+            <button type="button" class="action-btn" onclick="generateQuote()">Luo tarjous</button>
         </form>
     </div>
 
@@ -213,7 +212,8 @@
         <p style="font-size: 13px; color: #8F948C; margin-top: 50px; font-style: italic;">Tarjous on voimassa 30 päivää päiväyksestä. www.aileadit.fi</p>
         
         <div class="no-print">
-            <button class="print-btn" onclick="window.print()">Tulosta / Tallenna PDF</button>
+            <button type="button" class="action-btn print-btn" onclick="window.print()">Tulosta / Tallenna PDF</button>
         </div>
     </div>
 </div>
+
