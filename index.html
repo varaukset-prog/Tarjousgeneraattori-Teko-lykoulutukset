@@ -10,8 +10,8 @@
             font-family: 'Segoe UI', Arial, sans-serif; 
             margin: 0; 
             padding: 40px 20px;
-            background-color: #080B0C; /* Obsidian */
-            color: #F5F2EA; /* Warm light */
+            background-color: #080B0C; 
+            color: #F5F2EA; 
         }
         .container { 
             max-width: 750px; 
@@ -28,7 +28,7 @@
             padding: 12px 0; 
             margin-top: 6px; 
             border: none;
-            border-bottom: 1px solid #123B3A; /* Petrol alaviiva */
+            border-bottom: 1px solid #123B3A; 
             box-sizing: border-box; 
             background-color: transparent; 
             color: #F5F2EA;
@@ -37,7 +37,7 @@
         input:focus { outline: none; border-bottom-color: #D9764A; } 
         
         .submit-btn { 
-            background-color: #D9764A; /* Copper oranssi */
+            background-color: #D9764A; 
             color: #080B0C; 
             padding: 14px 20px; 
             border: none; 
@@ -89,10 +89,10 @@
         }
         .print-btn:hover { background-color: rgba(200, 169, 106, 0.1); }
         
-        /* PARANNETUT TULOSTUSASETUKSET TÄYSIN REUNATTOMALLE MUSTALLE SIVULLE */
+        /* PAKOTETTU TULOSTUS: LAAJENNUS REUNOJEN YLI JA TARKKA KESKITYS */
         @media print {
             @page { 
-                margin: 0 !important; /* Pakotetaan selaimen valkoiset marginaalit pois */
+                margin: 0 !important; 
             }
             html, body {
                 background-color: #080B0C !important;
@@ -102,27 +102,43 @@
                 color-adjust: exact !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                height: 100%;
+                width: 100% !important;
+                height: 100% !important;
             }
+            
+            /* Luodaan koko sivun peittävä musta taustakerros varotoimena */
+            body::before {
+                content: "";
+                position: fixed;
+                top: -10mm;
+                left: -10mm;
+                right: -10mm;
+                bottom: -10mm;
+                background-color: #080B0C !important;
+                z-index: -9999;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
             .container { 
-                max-width: 100%; 
-                background-color: #080B0C !important; 
-                margin: 0 !important;
+                max-width: 750px !important; 
+                width: 90% !important;
+                margin: 0 auto !important; 
                 padding: 0 !important;
+                background-color: transparent !important;
             }
+            
             body * { visibility: hidden; }
             .output-box, .output-box * { visibility: visible; }
+            
             .output-box { 
-                position: absolute; 
-                left: 0; 
-                top: 0; 
-                width: 100%; 
-                height: 100%;
-                border: none; 
-                padding: 50px 40px !important; /* Antaa turvavälin teksteille paperin sisälle */
-                background-color: #080B0C !important; 
-                -webkit-print-color-adjust: exact !important; 
-                print-color-adjust: exact !important;
+                display: block !important;
+                position: relative !important; 
+                margin: 0 auto !important;
+                padding: 60px 20px !important; 
+                border-top: none !important;
+                background-color: transparent !important; 
+                width: 100% !important;
                 box-sizing: border-box;
             }
             .no-print { display: none; }
@@ -153,7 +169,7 @@
         </form>
     </div>
 
-    <!-- TÄMÄ PUHDAS TARJOUSPOHJA TULOSTUU -->
+    <!-- TÄMÄ PUHDAS TARJOUSPOHJA TULOSTUU KESKITETTYNÄ -->
     <div id="quoteOutput" class="output-box">
         <div class="quote-header">
             <div>
@@ -206,12 +222,3 @@
                     <td colspan="3" style="text-align: right; color: #8F948C; font-size: 14px; border-bottom: none; padding-top: 15px;">Arvonlisävero (ALV 25,5%):</td>
                     <td style="font-weight: 500; border-bottom: none; padding-top: 15px;"><span id="outTaxAmount"></span> €</td>
                 </tr>
-                <tr class="total-row">
-                    <td colspan="3" style="text-align: right;">Hinta yhteensä (Sis. ALV):</td>
-                    <td class="total-price-text"><span id="outPriceTotal"></span> €</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <p style="font-size: 13px; color: #8F948C; margin-top: 60px; font-style: italic;">Tarjous on voimassa 30 päivää päiväyksestä. www.aileadit.fi</p>
-        
