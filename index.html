@@ -145,6 +145,7 @@
             <label for="participants">Osallistujamäärä:</label>
             <input type="number" id="participants" required min="1" placeholder="Esim. 10">
 
+            <!-- KORJATTU TÄHÄN ONCLICK-KÄSKY AKTIVOINTIA VARTEN -->
             <button type="button" onclick="generateQuote()">Luo tarjous</button>
         </form>
     </div>
@@ -216,8 +217,3 @@
         </div>
     </div>
 </div>
-
-<script>
-function generateQuote() {
-    const clientCompany = document.getElementById('clientCompany').value;
-    const clientName = document.getElementById('clientName').value;
