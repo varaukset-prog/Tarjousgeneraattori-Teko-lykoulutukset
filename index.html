@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjousgeneraattori - Aileadit</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 40px; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 700px; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin: auto; }
+        h1, h3 { color: #1a252f; margin-bottom: 10px; }
+        h3 { border-bottom: 2px solid #eaeded; padding-bottom: 5px; margin-top: 25px; }
+        label { display: block; margin-top: 15px; font-weight: bold; font-size: 14px; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #2ecc71; color: white; padding: 14px 20px; border: none; border-radius: 4px; cursor: pointer; margin-top: 25px; font-size: 16px; width: 100%; font-weight: bold; }
+        button:hover { background-color: #27ae60; }
+        
+        /* Tarjouksen tulostusasettelu */
+        .output-box { display: none; margin-top: 40px; padding: 40px; border: 1px solid #e2e8f0; background: #fff; }
+        .quote-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
+        .logo-preview { max-width: 180px; max-height: 90px; object-fit: contain; }
+        .company-info { text-align: right; font-size: 14px; color: #4a5568; line-height: 1.6; }
+        .client-info { margin-bottom: 35px; font-size: 16px; line-height: 1.5; }
+        .content-box { background-color: #f7fafc; padding: 20px; border-left: 4px solid #3182ce; margin-bottom: 35px; }
+        
+        /* Hinnoittelutaulukko */
+        .price-table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 20px; }
+        .price-table th, .price-table td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .price-table th { background-color: #f7fafc; font-weight: bold; }
+        .total-row { font-size: 18px; font-weight: bold; background-color: #edf2f7; }
+        
+        .print-btn { background-color: #3182ce; margin-top: 20px; }
+        .print-btn:hover { background-color: #2b6cb0; }
+        
+        @media print {
+            body * { visibility: hidden; }
+            .output-box, .output-box * { visibility: visible; }
+            .output-box { position: absolute; left: 0; top: 0; width: 100%; border: none; padding: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="no-print">
+        <h1>Aileadit - Tarjousgeneraattori</h1>
+        <form id="quoteForm">
+            <h3>1. Lataa logo</h3>
+            <label for="logoInput">Yrityksen logo:</label>
+            <input type="file" id="logoInput" accept="image/*">
+
+            <h3>2. Asiakkaan tiedot</h3>
+            <label for="clientCompany">Asiakkaan yrityksen nimi:</label>
+            <input type="text" id="clientCompany" required placeholder="Esim. Yritys Oy">
+
+            <label for="clientName">Asiakkaan yhteyshenkilön nimi:</label>
+            <input type="text" id="clientName" required placeholder="Esim. Matti Meikäläinen">
+
+            <label for="participants">Osallistujamäärä:</label>
+            <input type="number" id="participants" required min="1" placeholder="Esim. 5">
+
+            <button type="button" onclick="generateQuote()">Luo tarjous</button>
+        </form>
+    </div>
+
+    <!-- TÄMÄ OSA TULOSTUU VALMIISEEN TARJOUKSEEN -->
+    <div id="quoteOutput" class="output-box">
+        <div class="quote-header">
+            <div>
+                <!-- Tähän latautuu yrityksen logo -->
+                <img id="outLogo" class="logo-preview" src="" alt="Aileadit Logo" style="display:none;">
+            </div>
+            <div class="company-info">
+                <p><strong>Tarjouksen antaja:</strong></p>
+                <p style="font-size: 16px; font-weight: bold; color: #1a252f; margin: 0;">Aileadit</p>
+                <p style="margin: 2px 0;">Pyry Kauppinen</p>
+                <p style="font-style: italic; color: #718096; margin: 2px 0;">Asiantuntija, tekoälykoulutukset</p>
+                <p style="margin: 2px 0;">varaukset@aileadit.com</p>
+            </div>
+        </div>
+
+        <h2 style="font-size: 24px; color: #2d3748; letter-spacing: 0.5px; margin-bottom: 5px;">TARJOUS: TEKOÄLYKOULUTUKSET</h2>
+        <p style="font-size: 14px; color: #718096; margin-bottom: 25px;">Päivämäärä: <span id="outDate"></span></p>
+        <hr style="border: 0; border-top: 2px solid #2d3748; margin-bottom: 30px;">
+
+        <div class="client-info">
+            <p style="margin: 4px 0;"><strong>Asiakasyritys:</strong> <span id="outClientCompany"></span></p>
+            <p style="margin: 4px 0;"><strong>Vastaanottaja:</strong> <span id="outClientName"></span></p>
+        </div>
+
+        <div class="content-box">
+            <h4 style="margin-top: 0; margin-bottom: 8px; color: #2b6cb0;">Koulutuksen sisältö</h4>
+            <p style="margin: 0; line-height: 1.5; font-size: 15px;">Koulutus opettaa sinua ymmärtämään tekoälyä ja miten voit siitä saada liiketoiminnallista hyötyä omaan yritykseesi.</p>
+        </div>
+
+        <h4 style="margin-bottom: 10px; color: #2d3748;">Hinnoittelu</h4>
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>Kuvaus</th>
+                    <th>Määrä</th>
+                    <th>Yksikköhinta (Alv 0%)</th>
+                    <th>Yhteensä (Alv 0%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tekoälykoulutus (per osallistuja)</td>
+                    <td><span id="outParticipants"></span> hlö</td>
+                    <td>199,00 €</td>
+                    <td><span id="outPriceNet"></span> €</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: right;">Arvonlisävero (ALV 25,5%):</td>
+                    <td><span id="outTaxAmount"></span> €</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3" style="text-align: right;">Hinta yhteensä (Sis. ALV):</td>
+                    <td><span id="outPriceTotal"></span> €</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p style="font-size: 13px; color: #a0aec0; margin-top: 40px; font-style: italic;">Tarjous on voimassa 30 päivää päiväyksestä.</p>
+        
+        <div class="no-print">
+            <button class="print-btn" onclick="window.print()">Tulosta / Tallenna PDF</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
