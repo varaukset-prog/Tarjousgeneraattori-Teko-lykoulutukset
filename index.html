@@ -88,11 +88,10 @@
         .print-btn { background-color: #123B3A; color: #F5F2EA; margin-top: 25px; }
         .print-btn:hover { background-color: #101716; }
         
-        /* TÄRKEÄT TULOSTUSASETUKSET PDF-MUOTOA VARTEN */
+        /* TULOSTUSASETUKSET PDF-MUOTOA VARTEN MARGINAALEILLA */
         @media print {
-            /* Piilotetaan selaimen automaattiset ylä- ja alatunnistetekstit (URL, päivämäärät, sivunumerot) */
             @page { 
-                margin: 20mm; /* Lisää 20mm puhtaat marginaalit A4-arkin reunoille */
+                margin: 20px !important; /* 20px marginaali sivun reunoille selaimessa */
             }
             
             body { 
@@ -100,7 +99,7 @@
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact; 
                 padding: 0;
-                margin: 0;
+                margin: 20px !important; /* Pakotetaan 20px marginaali jokaisesta reunasta */
             }
             
             .container { 
@@ -120,7 +119,7 @@
                 top: 0; 
                 width: 100%; 
                 border: none; 
-                padding: 20px; /* Sisäinen lisätty marginaali elementtien ympärille PDF:ssä */
+                padding: 20px; 
                 background: #0D1110 !important; 
                 -webkit-print-color-adjust: exact; 
                 print-color-adjust: exact; 
@@ -217,3 +216,10 @@
         
         <div class="no-print">
             <button class="print-btn" onclick="window.print()">Tulosta / Tallenna PDF</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
