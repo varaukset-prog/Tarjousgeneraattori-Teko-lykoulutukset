@@ -211,10 +211,24 @@
         
         <p style="font-size: 13px; color: #8F948C; margin-top: 50px; font-style: italic;">Tarjous on voimassa 30 päivää päiväyksestä. www.aileadit.fi</p>
         
-        <div class="no-print">
-            <button type="button" class="action-btn print-btn" onclick="window.print()">Tulosta / Tallenna PDF</button>
-        </div>
-    </div>
+     <div class="no-print">
+    <button
+        type="button"
+        class="action-btn print-btn"
+        onclick="window.print()"
+    >
+        Tulosta / Tallenna PDF
+    </button>
+
+    <button
+        type="button"
+        class="action-btn"
+        onclick="editQuote()"
+        style="background:#123B3A; color:#F5F2EA; margin-top:10px;"
+    >
+        ← Muokkaa tietoja
+    </button>
+</div>
 </div>
 
 <!-- KORJATTU TURVALLINEN LASKENTALOGIIKKA -->
